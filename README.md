@@ -15,4 +15,4 @@ Run powershell script with CMD or Powershell using params listed below
   + -Passwd           : the password to login into the vsphere to control over host
   + -Vswitch          : vSwitch which configuration you want to copy on another host
 ### [+]Example usage:   
-<br>.\copy_portgroups.ps1 -hostfrom server1.domain.com -hostto server2.domain.com -Server name.subdomain.domain -User user@vsphere.local -Passwd strongPass123 -Vswitch Vswitch0
+.\copy_portgroups.ps1 -hostfrom server1.domain.com -hostto server2.domain.com -Server name.subdomain.domain -User user@vsphere.local -Passwd strongPass123 -Vswitch Vswitch0
