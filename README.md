@@ -2,7 +2,7 @@
 
 ## How to run:
 Install Powercli from https://developer.broadcom.com/powercli <br>
-run powershell script with CMD or Powershell using params listed below
+Run powershell script with CMD or Powershell using params listed below
 
 
 ### [+]Syntax: 
