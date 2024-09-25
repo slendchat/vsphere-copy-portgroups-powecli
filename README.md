@@ -1,5 +1,10 @@
 # vsphere-copy-portgroups-powecli
 
+## How to run:
+Install Powercli from https://developer.broadcom.com/powercli <br>
+run powershell script with CMD or Powershell using params listed below
+
+
 ### [+]Syntax: 
 .\copy_portgroups.ps1 -HostFrom NameVMHost1 -HostTo NameVMHost2  -Server Server -User username -Passwd password -Vswitch Vswitch[num]
 ### [+]Parameters:
