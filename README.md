@@ -1,6 +1,6 @@
 # vsphere-copy-portgroups-powecli
 
-## How to run:
+### How to run:
 Install Powercli from https://developer.broadcom.com/powercli <br>
 Run powershell script with CMD or Powershell using params listed below
 
