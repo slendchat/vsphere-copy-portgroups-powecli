@@ -1,6 +1,7 @@
 # vsphere-copy-portgroups-powecli
 
-### [+]Syntax: .\copy_portgroups.ps1 -HostFrom <NameVMHost1> -HostTo <NameVMHost2>  -Server <Server> -User <username> -Passwd <password> -Vswitch <Vswitch[num]>
+### [+]Syntax: 
+.\copy_portgroups.ps1 -HostFrom <NameVMHost1> -HostTo <NameVMHost2>  -Server <Server> -User <username> -Passwd <password> -Vswitch <Vswitch[num]>
 ### [+]Parameters:
   + -HostFrom         : First name or ip VMHost (for example: server1.domain.com)
   + -HostTo           : Second name or ip VMHost (for example: server2.domain.com)
