@@ -4,11 +4,11 @@ param (
     [string]$Server,
     [string]$User,
     [string]$Passwd,
-    [string]$Vswitch
+    [string]$Virtswitch
 )
 
-if (-not $HostFrom -or -not $HostTo -or -not $Server -or -not $User -or -not $Passwd -or -not $Vswitch) {
-    Write-Host "[+]Syntax: .\copy_portgroups.ps1 -HostFrom <NameVMHost1> -HostTo <NameVMHost2>  -Server <Server> -User <username> -Passwd <password> -Vswitch <Vswitch[num]>"
+if (-not $HostFrom -or -not $HostTo -or -not $Server -or -not $User -or -not $Passwd -or -not $Virtswitch) {
+    Write-Host "[+]Syntax: .\copy_portgroups.ps1 -HostFrom <NameVMHost1> -HostTo <NameVMHost2>  -Server <Server> -User <username> -Passwd <password> -Virtswitch <vSwitch[num]>"
     Write-Host ""
     Write-Host "[+]Parameters:"
     Write-Host "  -HostFrom         : First name or ip VMHost (for example: server1.domain.com)"
@@ -16,8 +16,8 @@ if (-not $HostFrom -or -not $HostTo -or -not $Server -or -not $User -or -not $Pa
     Write-Host "  -Server           : Vsphere server that you want to connect"
     Write-Host "  -User             : the username to login into the vsphere to control over host"
     Write-Host "  -Passwd           : the password to login into the vsphere to control over host"
-    Write-Host "  -Vswitch          : vSwitch which configuration you want to copy on another host"
-    Write-Host "[+]Example usage:   .\copy_portgroups.ps1 -hostfrom server1.domain.com -hostto server2.domain.com -Server name.subdomain.domain -User user@vsphere.local -Passwd strongPass123 -Vswitch Vswitch0"
+    Write-Host "  -Virtswitch          : vSwitch which configuration you want to copy on another host"
+    Write-Host "[+]Example usage:   .\copy_portgroups.ps1 -hostfrom server1.domain.com -hostto server2.domain.com -Server name.subdomain.domain -User user@vsphere.local -Passwd strongPass123 -Virtswitch Vswitch0"
     exit
 }
 
@@ -25,7 +25,7 @@ Set-PowerCLIConfiguration -InvalidCertificateAction Ignore
 
 Connect-VIServer -Server $Server -Protocol https -User $User -Password $Passwd
 
-$vswitch = Get-VirtualSwitch -VMHost $HostTo -Name $Vswitch
+$vswitch = Get-VirtualSwitch -VMHost $HostTo -Name $Virtswitch
 
 
 $vmfrom = Get-VMHost -Name $HostFrom
@@ -52,9 +52,3 @@ foreach ($portGroup in $vswitch_ports_group_to_add) {
 
 Write-Host -NoNewLine 'Press any key to exit...';
 $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
-
-
-
-
-
-
