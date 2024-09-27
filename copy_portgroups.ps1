@@ -37,11 +37,6 @@ $vm_to_settings = Get-VirtualPortgroup -VMHost $vmto | Select-Object Name, VlanI
 $filtered_vm_from_settings = $vm_from_settings | Where-Object { $_.Port -notlike '*host*' -and $_.VlanId -ne 0 }
 $filtered_vm_to_settings = $vm_to_settings | Where-Object { $_.Port -notlike '*host*' -and $_.VlanId -ne 0 }
 
-
-
-$filtered_vm_from_settings
-$filtered_vm_to_settings
-
 $vswitch_ports_group_to_add = @()
 
 foreach ($portGroup in $filtered_vm_from_settings) {
