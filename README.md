@@ -1,5 +1,8 @@
 # vsphere-copy-portgroups-powercli
-
+### What it does:
+Copies vsphere virtual swithes port groups for specific virtual switch from one vsphere host to another
+it checks if the portgroup is not configured as VMkernel Network Adapter and if vlan id is existing
+also it checks if the copied port group already exists on destination host and if it does it won`t copy it there.
 ### How to run:
 Install Powercli from https://developer.broadcom.com/powercli <br>
 Run powershell script with CMD or Powershell using params listed below
