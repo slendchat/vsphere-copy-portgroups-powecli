@@ -31,13 +31,21 @@ $vswitch = Get-VirtualSwitch -VMHost $HostTo -Name $Virtswitch
 $vmfrom = Get-VMHost -Name $HostFrom
 $vmto = Get-VMHost -Name $HostTo
 	
-$vm_from_settings = Get-VirtualPortgroup -VMHost $vmfrom | Select-Object Name, VlanId
-$vm_to_settings = Get-VirtualPortgroup -VMHost $vmto | Select-Object Name, VlanId
+$vm_from_settings = Get-VirtualPortgroup -VMHost $vmfrom | Select-Object Name, VlanId, Port
+$vm_to_settings = Get-VirtualPortgroup -VMHost $vmto | Select-Object Name, VlanId, Port
+
+$filtered_vm_from_settings = $vm_from_settings | Where-Object { $_.Port -notlike '*host*' -and $_.VlanId -ne 0 }
+$filtered_vm_to_settings = $vm_to_settings | Where-Object { $_.Port -notlike '*host*' -and $_.VlanId -ne 0 }
+
+
+
+$filtered_vm_from_settings
+$filtered_vm_to_settings
 
 $vswitch_ports_group_to_add = @()
 
-foreach ($portGroup in $vm_from_settings) {
-    if (-not ($vm_to_settings | Where-Object { $_.Name -eq $portGroup.Name })) {
+foreach ($portGroup in $filtered_vm_from_settings) {
+    if (-not ($filtered_vm_to_settings | Where-Object { $_.Name -eq $portGroup.Name })) {
         $vswitch_ports_group_to_add += [PSCustomObject]@{
             Name   = $portGroup.Name
             VlanId = $portGroup.VlanId
@@ -46,7 +54,7 @@ foreach ($portGroup in $vm_from_settings) {
 }
 
 foreach ($portGroup in $vswitch_ports_group_to_add) {
-    New-VirtualPortGroup -VirtualSwitch $vswitch -Name $portGroup.Name -VLanId $portGroup.VlanId
+   New-VirtualPortGroup -VirtualSwitch $vswitch -Name $portGroup.Name -VLanId $portGroup.VlanId
 }
 
 
